@@ -1,0 +1,42 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: line-redis
+  labels:
+    db: line-redis
+spec:
+  selector:
+    matchLabels:
+      db: line-redis
+  template:
+    metadata:
+      labels:
+        db: line-redis
+    spec:
+      containers:
+        - name: line-redis
+          image: redis:7.0
+          resources:
+            requests:
+              cpu: 100m
+              memory: 50Mi
+            limits:
+              cpu: 200m
+              memory: 100Mi
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: line-redis
+  labels:
+    db: line-redis
+spec:
+  type: ClusterIP
+  selector:
+    db: line-redis
+  ports:
+  - protocol: TCP
+    port: 6379
+    targetPort: 6379
