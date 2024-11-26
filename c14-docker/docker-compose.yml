@@ -9,7 +9,7 @@ services:
       - line-keycloak
       - line-postgres
       - tempo
-    image: "catalog-service"
+    image: cloudbook/c14-bookstore-catalog-service
     container_name: "catalog-service"
     ports:
       - 9001:9001
@@ -37,7 +37,7 @@ services:
       - line-keycloak
       - line-postgres
       - line-rabbitmq
-    image: "order-service"
+    image: cloudbook/c14-bookstore-order-service
     container_name: "order-service"
     ports:
       - 9002:9002
@@ -65,7 +65,7 @@ services:
     depends_on:
       - fluent-bit
       - line-rabbitmq
-    image: "dispatcher-service"
+    image: cloudbook/c14-bookstore-dispatcher-service
     container_name: dispatcher-service
     ports:
       - 9003:9003
@@ -91,7 +91,7 @@ services:
       - line-keycloak
       - line-redis
       - line-ui
-    image: "edge-service"
+    image: cloudbook/c14-bookstore-edge-service
     container_name: "edge-service"
     ports:
       - 9000:9000
@@ -118,7 +118,7 @@ services:
   config-service:
     depends_on:
       - fluent-bit
-    image: "config-service"
+    image: cloudbook/c14-bookstore-config-service
     container_name: "config-service"
     ports:
       - 8888:8888
