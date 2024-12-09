@@ -16,7 +16,7 @@ helm repo update
 
 echo "\n📦 Installing Tempo..."
 
-helm upgrade --install tempo --namespace=observability-stack grafana/tempo \
+helm upgrade --install tempo --namespace=observability-stack --create-namespace grafana/tempo \
   --values helm/tempo-values.yml
 
 echo "\n⌛ Waiting for Tempo to be ready..."
@@ -35,7 +35,7 @@ echo "\n📦 Installing Grafana, Loki, Prometheus, and Fluent Bit..."
 
 kubectl apply -f resources/dashboards
 
-helm upgrade --install loki-stack --namespace=observability-stack grafana/loki-stack \
+helm upgrade --install loki-stack --namespace=observability-stack --create-namespace grafana/loki-stack \
   --values helm/loki-stack-values.yml
 
 sleep 5
