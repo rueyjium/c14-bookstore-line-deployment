@@ -11,7 +11,7 @@ helm repo update
 
 echo "\n📦 Installing Tempo..."
 
-helm upgrade --install tempo --namespace=observability-stack grafana/tempo \
+helm upgrade --install tempo --namespace=observability-stack grafana/tempo-distributed \
   --values helm/tempo-values.yml
 
 echo "\n⌛ Waiting for Tempo to be ready..."

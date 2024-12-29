@@ -90,7 +90,7 @@ services:
       - fluent-bit
       - line-keycloak
       - line-redis
-      - line-ui
+#      - line-ui
     image: cloudbook/c14-bookstore-edge-service:0.0.1-SNAPSHOT
     container_name: "edge-service"
     ports:
@@ -106,7 +106,7 @@ services:
       - OTEL_METRICS_EXPORTER=none
       - CATALOG_SERVICE_URL=http://catalog-service:9001
       - ORDER_SERVICE_URL=http://order-service:9002
-      - SPA_URL=http://line-ui:9004
+#      - SPA_URL=http://line-ui:9004
       - SPRING_CLOUD_CONFIG_URI=http://config-service:8888
       - SPRING_DATA_REDIS_HOST=line-redis
       - SPRING_SECURITY_OAUTH2_CLIENT_PROVIDER_KEYCLOAK_ISSUER_URI=http://host.docker.internal:8080/realms/LineBookstore
@@ -138,19 +138,19 @@ services:
       options:
         fluentd-address: 127.0.0.1:24224
 
-  line-ui:
-    depends_on:
-      - fluent-bit
-    image: "ghcr.io/linebookstore/line-ui:v1"
-    container_name: "line-ui"
-    ports:
-      - 9004:9004
-    environment:
-      - PORT=9004
-    logging:
-      driver: fluentd
-      options:
-        fluentd-address: 127.0.0.1:24224
+#  line-ui:
+#    depends_on:
+#      - fluent-bit
+#    image: "ghcr.io/linebookstore/line-ui:v1"
+#    container_name: "line-ui"
+#    ports:
+#      - 9004:9004
+#    environment:
+#      - PORT=9004
+#    logging:
+#      driver: fluentd
+#      options:
+#        fluentd-address: 127.0.0.1:24224
   
   # Backing Services
 
